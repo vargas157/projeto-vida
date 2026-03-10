@@ -1,23 +1,347 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus objetivos do ano</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gustavo | Futuro Advogado ⚖️</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #bb0c00;
+      --primary-dark: #711700;
+      --accent: #b8b8b8;
+      --light: #000000;
+      --dark: #212529;
+      --gray: #720d00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #aac09b, #a80303, #2c5364);
+      color: var(--light);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      height: 100vh;
+      min-height: 680px;
+      background: linear-gradient(rgba(241, 0, 0, 0.82), rgba(252, 121, 121, 0.92)),
+                  url('https://images.unsplash.com/photo-1589829545856-d10d5c6a0e8f?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 0 20px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 0.2em;
+      text-shadow: 0 6px 20px rgba(209, 20, 20, 0.7);
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 1.2rem 0 2.5rem;
+      opacity: 0.95;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin: 0.6rem;
+      transition: all 0.35s;
+      box-shadow: 0 6px 20px rgba(156, 146, 116, 0.35);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(161, 13, 13, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: all 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 2.2rem;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      padding: 8rem 5% 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 3.2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1.15rem;
+      margin-bottom: 1.4rem;
+      color: #d1d5db;
+    }
+
+    .goals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2.2rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: all 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(168, 37, 37, 0.3);
+    }
+
+    .card i {
+      font-size: 2.8rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hobbies {
+      text-align: center;
+      margin: 5rem 0;
+    }
+
+    .hobbies i {
+      font-size: 5rem;
+      color: var(--accent);
+      margin: 0 1.5rem;
+      opacity: 0.9;
+      transition: 0.4s;
+    }
+
+    .hobbies i:hover {
+      transform: scale(1.2) rotate(10deg);
+      opacity: 1;
+    }
+
+    footer {
+      background: var(--dark);
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #8898aa;
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 4.5rem; }
+      .nav-links { display: none; } /* pode adicionar menu hambúrguer depois */
+    }
+  </style>
 </head>
-
 <body>
-    <section class="conteudo-principal">
-        <h2 class="titulo-principal">Objetivos para o ano 2026<span>_</span></h2>
-        <div class="botoes">
-            <button class="botao">Cursos na Alura</button>
-            <button class="botao">Criar projetos em Javascript</button>
-            <button class="botao">Criar um portfolio</button>
-            <button class="botao">Atualizar meu currículo</button>
-        </div>
-    </section>
-</body>
 
+<nav id="navbar">
+  <div class="nav-container">
+    <div class="logo">GUSTAVO VARGAS</div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#metas">Metas</a>
+      <a href="#sonhos">Sonhos</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-content">
+    <h1>Gustavo Vargas <span>16</span></h1>
+    <div class="subtitle">Futuro Advogado | Apaixonado por Futsal ⚽</div>
+    <a href="#sobre" class="btn">Conhecer mais</a>
+    <a href="#metas" class="btn btn-outline">Meus Objetivos</a>
+  </div>
+</header>
+
+<section id="sobre">
+  <h2>Sobre Mim</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Olá! Meu nome é Gustavo, tenho <strong>16 anos</strong> e moro em Tapira.</p>
+      <p>Estou no ensino médio e já tenho certeza do que quero para o futuro: me formar em <strong>Direito</strong> e atuar na área jurídica, defendendo justiça e ajudando pessoas.</p>
+      <p>Fora dos estudos, minha grande paixão é jogar <strong>futsal</strong>. Amo a velocidade, a técnica, o trabalho em equipe e aquela adrenalina de fazer um gol decisivo.</p>
+    </div>
+    <div class="hobbies">
+      <i class="fas fa-gavel"></i>
+      <i class="fas fa-futbol"></i>
+      <i class="fas fa-book-open"></i>
+    </div>
+  </div>
+</section>
+
+<section id="metas" style="background:rgba(0,0,0,0.15)">
+  <h2>Metas & Planos</h2>
+  <div class="goals">
+    <div class="card">
+      <i class="fas fa-graduation-cap"></i>
+      <h3>Passar no vestibular de Direito</h3>
+      <p>2027–2028 – foco total na prova, redação nota 900+ e boa nota no ENEM.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-trophy"></i>
+      <h3>Evoluir no futsal</h3>
+      <p>Chegar a jogar em liga adulta competitiva ou pelo menos manter nível alto com amigos.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-plane"></i>
+      <h3>Viajar mais</h3>
+      <p>Conhecer pelo menos 5 estados brasileiros e 2 países até os 22 anos.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-handshake"></i>
+      <h3>Primeiro estágio em advocacia</h3>
+      <p>Quero começar a estagiar ainda na faculdade para ganhar experiência real.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sonhos">
+  <h2>Meus Grandes Sonhos</h2>
+  <div class="goals">
+    <div class="card">
+      <i class="fas fa-balance-scale"></i>
+      <h3>Ser advogado criminalista reconhecido ou ser PRF</h3>
+      <p>Atuar em casos grandes e ajudar a corrigir injustiças.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-users"></i>
+      <h3>Ter meu próprio escritório</h3>
+      <p>Um lugar moderno, com equipe competente e clientes que confiam no meu trabalho.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-heart"></i>
+      <h3>Formar uma família feliz</h3>
+      <p>Ter alguém especial e filhos que tenham orgulho do pai que têm.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-globe-americas"></i>
+      <h3>Conhecer o mundo</h3>
+      <p>Europa, Ásia, América do Norte… viajar bastante depois de formado.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Feito com ⚡ por Gustavo • 2026 • Curitiba, Brasil</p>
+  <p style="margin-top:1rem; font-size:0.9rem; opacity:0.7;">
+    “O sucesso é a soma de pequenos esforços repetidos dia após dia.” – Robert Collier
+  </p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
+  });
+</script>
+
+</body>
 </html>
